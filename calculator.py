@@ -1,3 +1,5 @@
+history = []
+
 def add(a, b):
     return a + b
 
@@ -12,22 +14,35 @@ def divide(a, b):
         return "Cannot divide by zero"
     return a / b
 
+def add_to_history(entry):
+    history.append(entry)
+
+def print_history():
+    print("\nCalculation History:")
+    for h in history:
+        print(h)
+
 def main():
-    print("Calculator - Add, Subtract, Multiply, Divide")
+    print("Calculator with History - Add, Subtract, Multiply, Divide")
     a = float(input("Enter first number: "))
     b = float(input("Enter second number: "))
     op = input("Enter operation (+, -, *, /): ")
 
     if op == '+':
-        print("Result:", add(a, b))
+        result = add(a, b)
     elif op == '-':
-        print("Result:", subtract(a, b))
+        result = subtract(a, b)
     elif op == '*':
-        print("Result:", multiply(a, b))
+        result = multiply(a, b)
     elif op == '/':
-        print("Result:", divide(a, b))
+        result = divide(a, b)
     else:
         print("Invalid operation")
+        return
+
+    print("Result:", result)
+    add_to_history(f"{a} {op} {b} = {result}")
+    print_history()
 
 if __name__ == "__main__":
     main()
