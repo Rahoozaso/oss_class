@@ -7,11 +7,16 @@ def subtract(a, b):
 def multiply(a, b):
     return a * b
 
+def divide(a, b):
+    if b == 0:
+        return "Cannot divide by zero"
+    return a / b
+
 def main():
-    print("Calculator - Add, Subtract, Multiply")
+    print("Calculator - Add, Subtract, Multiply, Divide")
     a = float(input("Enter first number: "))
     b = float(input("Enter second number: "))
-    op = input("Enter operation (+, -, *): ")
+    op = input("Enter operation (+, -, *, /): ")
 
     if op == '+':
         print("Result:", add(a, b))
@@ -19,9 +24,10 @@ def main():
         print("Result:", subtract(a, b))
     elif op == '*':
         print("Result:", multiply(a, b))
+    elif op == '/':
+        print("Result:", divide(a, b))
     else:
         print("Invalid operation")
 
 if __name__ == "__main__":
     main()
-
