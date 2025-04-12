@@ -18,11 +18,7 @@ def add_to_history(entry):
     history.append(entry)
 
 def print_history():
-<<<<<<< HEAD
-    print("\nCalculation History:")
-=======
     print("Calculation History:")
->>>>>>> feature/cli-ui
     for h in history:
         print(h)
 
