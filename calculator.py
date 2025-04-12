@@ -22,26 +22,42 @@ def print_history():
     for h in history:
         print(h)
 
-def main():
-    print("Calculator with History - Add, Subtract, Multiply, Divide")
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    op = input("Enter operation (+, -, *, /): ")
+def undo_last():
+    if history:
+        removed = history.pop()
+        print(f"Undone: {removed}")
+    else:
+        print("No history to undo")
 
-    if op == '+':
-        result = add(a, b)
-    elif op == '-':
-        result = subtract(a, b)
-    elif op == '*':
-        result = multiply(a, b)
-    elif op == '/':
-        result = divide(a, b)
+def main():
+    print("Calculator with History and Undo - Add, Subtract, Multiply, Divide")
+    op = input("Enter operation (+, -, *, /, undo): ")
+
+    if op == 'undo':
+        undo_last()
+    elif op in ['+', '-', '*', '/']:
+        try:
+            a = float(input("Enter first number: "))
+            b = float(input("Enter second number: "))
+        except ValueError:
+            print("Invalid input. Please enter numeric values.")
+            return
+
+        if op == '+':
+            result = add(a, b)
+        elif op == '-':
+            result = subtract(a, b)
+        elif op == '*':
+            result = multiply(a, b)
+        elif op == '/':
+            result = divide(a, b)
+
+        print("Result:", result)
+        add_to_history(f"{a} {op} {b} = {result}")
     else:
         print("Invalid operation")
         return
 
-    print("Result:", result)
-    add_to_history(f"{a} {op} {b} = {result}")
     print_history()
 
 if __name__ == "__main__":
